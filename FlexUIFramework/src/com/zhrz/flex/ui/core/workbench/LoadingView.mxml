@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]public var loadingLabel:String;
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Label text="{loadingLabel}" verticalCenter="0" horizontalCenter="0"/>
+	
+	
+</mx:Canvas>
