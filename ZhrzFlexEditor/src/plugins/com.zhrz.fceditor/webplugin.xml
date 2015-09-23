@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.zhrz.fceditor" name="fceditor" version="1.0" swf="ZhrzFcEditorPlugin.swf">
+
+	<extensionPoint id="uicomponentDefine" name="extensionpoint.uicomponentDefine"></extensionPoint>
+	<extensionPoint id="variableBindableDefine" name="extensionpoint.variableBindableDefine"></extensionPoint>
+	
+	
+	
+	<extension id="_proudctExtension" point="com.zhrz.eclipse.workbench.plugin.product">
+		<product id="fceditor" name="fceditor" pageLayoutClient="com.zhrz.fceditor._pageLayoutClientExtension.fceditorPageLayoutClient"
+				style="">
+			<pages>
+				<page id="com.zhrz.fceditor._pageExtension.commonPage"/>
+			</pages>
+		</product>
+	</extension>
+
+	<extension id="_pageLayoutClientExtension" point="com.zhrz.eclipse.workbench.plugin.pageLayoutClient">
+		<pageLayoutClient id="fceditorPageLayoutClient" className="com.zhrz.fceditor.pageLayout.FcEditorPageLayoutClient"/>
+	</extension>
+
+	<extension id="_pageExtension" point="com.zhrz.eclipse.workbench.plugin.pages">
+		<page id="commonPage" label="fc编辑器" >
+			<layouts>
+				<pageLayout id="firstLayout" layoutId="com.zhrz.fceditor._pageLayout.commonLayout" isDefault="true" label="默认布局" />
+			</layouts>
+		</page>
+	</extension>
+
+
+	<extension id="_pageLayout" point="com.zhrz.eclipse.workbench.plugin.layout">
+		<layout id="commonLayout" >
+			<VBox width="100%" height="100%" styleName="layoutStyle" verticalGap="0">
+				<VBox width="100%" height="60" id="_topArea" isTab="false"
+					styleName="menulayoutStyle">
+
+				</VBox>
+
+				<HBox width="100%" height="100%" styleName="horLayoutStyle">
+					<VBox width="300" height="100%" verticalGap="1">
+						<Canvas width="100%" height="50%" id="_projectArea" isTab="true" />
+						<Canvas width="100%" height="50%" id="_componentArea"
+							isTab="true" />
+					</VBox>
+					<VBox width="100%" height="100%" verticalGap="0">
+						<Canvas width="100%" height="80%" id="_editArea" isTab="true"
+							superTab="true" />
+						<Canvas width="100%" height="20%" id="_consoleArea" isTab="true" />
+					</VBox>
+					<VBox width="400" height="100%" verticalGap="0">
+						<Canvas width="100%" height="70%" id="_propertyArea" isTab="true" />
+						<Canvas width="100%" height="30%" id="_outlineArea" isTab="true" />
+					</VBox>
+				</HBox>
+				<HBox width="100%" height="25" isTab="false" id="_statusArea"> 
+				
+				</HBox>
+			</VBox>
+		</layout>
+	</extension>
+
+	<!-- 
+	<extension id="_layoutStrategy" point="com.zhrz.eclipse.workbench.plugin.layoutStrategy">
+		<layoutStrategy id="_defalutLayoutStrategy" className="ddddddddddddddddd">
+			
+		</layoutStrategy>
+	</extension>
+	 -->
+
+
+	<extension id="_viewExtension" point="com.zhrz.eclipse.workbench.plugin.views">
+		<view id="_menuBarView" className="com.zhrz.fceditor.menus.AppMenu"
+			label="菜单" >
+				<menuData id="default">
+					<menuitem label="文件">  
+						<menuitem label="新建-框架web项目" data="com.zhrz.fceditor.projectManager._fccommands.createNewProject"/> 
+						<menuitem label="新建-普通web项目" data="com.zhrz.fceditor.projectManager._fccommands.createNewCommonProject"/>  
+						<!--  
+						<menuitem label="保存" enabled="false" icon="myIcon"/>  
+						<menuitem label="另存为..."    type="check"       toggled="true"/>    
+						<menuitem label=""   type="separator"/>   
+						<menuitem label="输出">    
+							<menuitem label="BMPL"       type="radio"    groupName="one"/>    
+							<menuitem label="图片"    type="radio"     groupName="one"  toggled="true"/>    
+						</menuitem>  
+						-->  
+					</menuitem>  
+				  
+					<menuitem label="定义" >
+						<menuitem label="全局定义" data="com.zhrz.fceditor._fccommands.globalConfigurate" />
+					</menuitem>
+					<menuitem label="帮助"/>  
+				</menuData>
+				
+				<menuData id="frameweb3.0">
+					<menuitem label="文件">  
+						<menuitem label="新建-项目" data="com.zhrz.fceditor.projectManager._fccommands.createNewProject"/>  
+						<menuitem label="新建布局客户端" data="com.zhrz.fceditor.projectManager._fccommands.createLayoutClient"/> 
+						<menuitem label="创建Page" data="com.zhrz.fceditor.projectManager._fccommands.createPage"/> 
+						<menuitem label="创建布局" data="com.zhrz.fceditor.projectManager._fccommands.createLayout"/> 
+						<menuitem label="创建View" data="com.zhrz.fceditor.projectManager._fccommands.createView"/>     
+					</menuitem>  
+					<menuitem label="定义" >
+						<menuitem label="全局定义" data="com.zhrz.fceditor._fccommands.globalConfigurate" />
+					</menuitem>
+					<menuitem label="帮助"/>  
+				</menuData>
+			
+			</view>
+		<view id="_toolBarView" className="com.zhrz.fceditor.menus.ToolBar"
+			label="工具栏" />
+
+		<!-- 
+		<view id="_projectView" className="com.zhrz.fceditor.projectmanager.ProjectTree"
+			label="项目管理器" />
+			 -->
+		<view id="_editorView" className="com.zhrz.fceditor.editor.mxml.MxmlEditor"
+			label="编辑区域" />
+		<view id="_propertyView" className="com.zhrz.fceditor.propertyindicator.PropertyIndicator"
+			label="属性指示器" />
+		<view id="_outlineView" className="com.zhrz.fceditor.outline.OutLineView"
+			label="outline" />
+		<view id="_componentOutLineView" className="com.zhrz.fceditor.component.ComponentOutLineView"
+			label="组件" />
+		<view id="_consoleView" className="com.zhrz.fceditor.console.ConsoleView"
+			label="控制台" />
+
+		<view id="_problemView" className="com.zhrz.fceditor.console.ProblemView"
+			label="问题" />
+		
+		
+		<view id="_variableView" className="com.zhrz.fceditor.variabledefine.VariableView"
+			label="类变量定义" />
+			
+		<view id="_statusView" className="com.zhrz.fceditor.status.StatusView" label="状态栏"/>
+	</extension>
+	
+	
+	
+	<extension id="_lauoutViewExtension"
+		point="com.zhrz.eclipse.workbench.plugin.layoutView">
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._topArea"
+			viewId="com.zhrz.fceditor._viewExtension._menuBarView" />
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._topArea"
+			viewId="com.zhrz.fceditor._viewExtension._toolBarView" />
+		
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._projectArea"
+			viewId="com.zhrz.fceditor.projectManager._viewExtension._projectView" />
+		
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._propertyArea"
+			viewId="com.zhrz.fceditor._viewExtension._propertyView" />
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._outlineArea"
+			viewId="com.zhrz.fceditor._viewExtension._outlineView" />
+
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._componentArea"
+			viewId="com.zhrz.fceditor._viewExtension._componentOutLineView" />
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._consoleArea"
+			viewId="com.zhrz.fceditor._viewExtension._consoleView" />
+
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._consoleArea"
+			viewId="com.zhrz.fceditor._viewExtension._problemView" />
+		
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._consoleArea"
+			viewId="com.zhrz.fceditor._viewExtension._variableView" />
+			
+		<layout_view layoutId="com.zhrz.fceditor._pageLayout.commonLayout._statusArea"
+			viewId="com.zhrz.fceditor._viewExtension._statusView" />
+	</extension>
+
+
+	<extension id="_fceditors" point="com.zhrz.eclipse.workbench.plugin.editors">
+		<editor id="mxmlEditor" className="com.zhrz.fceditor.editor.mxml.MxmlEditor"
+			type="file" label="MXML编辑器">
+		</editor>
+
+		<editor id="cssEditor" className="com.zhrz.fceditor.editor.css.CssEditor"
+			type="file" label="css编辑器">
+		</editor>
+
+		<editor id="as3Editor" className="com.zhrz.fceditor.editor.as3.As3Editor"
+			type="file" label="ActionScript编辑器">
+		</editor>
+		
+		<editor id="xmlEditor" className="com.zhrz.fceditor.editor.xml.XmlEditor"
+			type="file" label="xml编辑器">
+		</editor>
+		
+		<editor id="imageEditor" className="com.zhrz.fceditor.editor.image.ImageEditor"
+			type="file" label="图片编辑器">
+		</editor>
+	</extension>
+
+
+	<extension id="_editorsExtenExtension"
+		point="com.zhrz.eclipse.workbench.plugin.editorContentType">
+		
+		
+		<editorExtens editorId="com.zhrz.fceditor._fceditors.mxmlEditor"
+			contentType="mxml" index="0">
+		</editorExtens>
+		
+		
+		<editorExtens editorId="com.zhrz.fceditor._fceditors.xmlEditor"
+			contentType="xml" index="0">
+		</editorExtens>
+
+		<editorExtens editorId="com.zhrz.fceditor._fceditors.cssEditor"
+			contentType="css" index="0">
+		</editorExtens>
+
+		<editorExtens editorId="com.zhrz.fceditor._fceditors.as3Editor"
+			contentType="as" index="0">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor._fceditors.imageEditor"
+			contentType="png.jpg" index="0">
+		</editorExtens>
+	</extension>
+
+
+	<extension id="_fceditors" point="com.zhrz.eclipse.workbench.plugin.handlers">
+		<Handler id="createNewProjectHandler" className="com.zhrz.fceditor.handler.GlobalConfigurateHandler"
+			commandId="com.zhrz.fceditor._fccommands.globalConfigurate">
+		</Handler>
+		<Handler id="createNewProjectHandler" className="com.zhrz.fceditor.handler.SaveFileHandler"
+			commandId="com.zhrz.fceditor._fccommands.saveFile">
+		</Handler>
+		
+		<Handler id="ffdddq1" className="com.zhrz.fceditor.handler.testCommand1Handler"
+			commandId="com.zhrz.fceditor._fccommands.testCommand1">
+		</Handler>
+		
+		<Handler id="ffdddw" className="com.zhrz.fceditor.handler.AddClassVariableHandler"
+			commandId="com.zhrz.fceditor._fccommands.addClassVariable">
+		</Handler>
+		<Handler id="ffddde" className="com.zhrz.fceditor.handler.DeleteClassVariableHandler"
+			commandId="com.zhrz.fceditor._fccommands.deleteClassVariable">
+		</Handler>
+		
+		<Handler id="ffdddr" className="com.zhrz.fceditor.handler.DeleteComponentHandler"
+			commandId="com.zhrz.fceditor._fccommands.deleteComponent">
+		</Handler>
+		
+		<Handler id="ffddd5" className="com.zhrz.fceditor.handler.MoveUpComponentHandler"
+			commandId="com.zhrz.fceditor._fccommands.moveUpComponent" />
+		<Handler id="ffddd6" className="com.zhrz.fceditor.handler.MoveDownComponentHandler"
+			commandId="com.zhrz.fceditor._fccommands.moveDownComponent" />
+	</extension>
+	
+	<extension id="_fccommands" point="com.zhrz.eclipse.workbench.plugin.commands">
+		<Command id="globalConfigurate" 
+			descn="ddd"
+			name="globalConfigurateCommand"/>
+	
+		<Command id="saveFile" 
+			descn="ddd"
+			name="saveCommand"/>
+			
+		<Command id="testCommand1" 
+			descn="ddd"
+			name="testCommand1"/>
+			
+			
+		<Command id="addClassVariable" 
+			descn="增加类变量"
+			name="addClassVariable"/>
+		<Command id="deleteClassVariable" 
+			descn="删除类变量"
+			name="deleteClassVariable"/>
+			
+		<Command id="deleteComponent" 
+			descn="删除组件"
+			name="deleteComponent"/>	
+			
+		<Command id="moveUpComponent" 
+			descn="向上移动组件"
+			name="moveUpComponent"/>
+			
+		<Command id="moveDownComponent" 
+			descn="向下移动组件"
+			name="moveDownComponent"/>				
+	</extension>
+	
+	
+	
+	
+	<extension id="_componentDefine" point="com.zhrz.fceditor.uicomponentDefine">
+		<componentDefine id="_mxButton1" name="mxButton" label="3.0 Button" className="mx.controls.Button" icon="BUTTON_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxButtonr" name="mxButtonBar" label="3.0 ButtonBar" className="mx.controls.ButtonBar" icon="BUTTON_BAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxCheckBox" name="mxCheckBox" label="3.0 CheckBox" className="mx.controls.CheckBox" icon="CHECK_BOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxColorPicker" name="mxColorPicker" label="3.0 ColorPicker" className="mx.controls.ColorPicker" icon="COLORPICKER_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxComboBox" name="mxComboBox" label="3.0 ComboBox" className="mx.controls.ComboBox" icon="COMBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxDataGrid" name="mxDataGrid" label="3.0 DataGrid" className="mx.controls.DataGrid" icon="DATAGRID_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxDateChooser" name="mxDateChooser" label="3.0 DateChooser" className="mx.controls.DateChooser" icon="DATECHOOSER_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxDateField" name="mxDateField" label="3.0 DateField" className="mx.controls.DateField" icon="DATEFIELD_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxHorizontalList" name="mxHorizontalList" label="3.0 HorizontalList" className="mx.controls.HorizontalList" icon="HORIZONATALIST_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxHRule" name="mxHRule" label="3.0 HRule" className="mx.controls.HRule" icon="HRULE_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxHSlider" name="mxHSlider" label="3.0 HSlider" className="mx.controls.HSlider" icon="HSLIDER_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxImage" name="mxImage" label="3.0 Image" className="mx.controls.Image" icon="IMAGE_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxLabel" name="mxLabel" label="3.0 Label" className="mx.controls.Label" icon="LABEL_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxLinkBar" name="mxLinkBar" label="3.0 LinkBar" className="mx.controls.LinkBar" icon="LINKBAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxLinkButton" name="mxLinkButton" label="3.0 LinkButton" className="mx.controls.LinkButton" icon="LINKBUTTON_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxList" name="mxList" label="3.0 List" className="mx.controls.List" icon="LIST_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxMenu" name="mxMenu" label="3.0 Menu" className="mx.controls.Menu" icon="MENU_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxMenuBar" name="mxMenuBar" label="3.0 MenuBar" className="mx.controls.MenuBar" icon="MENUBAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxNumericStepper" name="mxNumericStepper" label="3.0 NumericStepper" className="mx.controls.NumericStepper" icon="NUMERICSTEPPER_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxProgressBar" name="mxProgressBar" label="3.0 ProgressBar" className="mx.controls.ProgressBar" icon="PROGRESSBAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxRadioButton" name="mxRadioButton" label="3.0 RadioButton" className="mx.controls.RadioButton" icon="RADIOBUTTON_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxRadioButtonGroup" name="mxRadioButtonGroup" label="3.0 RadioButtonGroup" className="mx.controls.RadioButtonGroup" icon="RADIOBUTTONGROUP_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxRichTextEditor" name="mxRichTextEditor" label="3.0 RichTextEditor" className="mx.controls.RichTextEditor" icon="RICHTEXTEDITOR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTabBar" name="mxTabBar" label="3.0 TabBar" className="mx.controls.TabBar" icon="TAB_BAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxText" name="mxText" label="3.0 Text" className="mx.controls.Text" icon="TEXT_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTextArea" name="mxTextArea" label="3.0 TextArea" className="mx.controls.TextArea" icon="TEXTAREA_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTextInput" name="mxTextInput" label="3.0 TextInput" className="mx.controls.TextInput" icon="TEXTINPUT_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTileList" name="mxTileList" label="3.0 TileList" className="mx.controls.TileList" icon="TILELIST_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTree" name="mxTree" label="3.0 Tree" className="mx.controls.Tree" icon="TREE_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxVideoDisplay" name="mxVideoDisplay" label="3.0 VideoDisplay" className="mx.controls.VideoDisplay" icon="VIDEOPLAY_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxVRule" name="mxVRule" label="3.0 VRule" className="mx.controls.VRule" icon="VRULE_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxVSlider" name="mxVSlider" label="3.0 VSlider" className="mx.controls.VSlider" icon="VSLIDER_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		
+		
+		<componentDefine id="_mxAccordion" name="mxAccordion" label="3.0 Accordion" className="mx.containers.Accordion" icon="ACCORDION_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxApplicationControlBar" name="mxApplicationControlBar" label="3.0 ApplicationControlBar" className="mx.containers.ApplicationControlBar" icon="APPLICATIONCONTROLBAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxAccordion" name="mxAccordion" label="3.0 Accordion" className="mx.containers.Accordion" icon="ACCORDION_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxCanvas"  name="mxCanvas"  label="3.0 Canvas" className="mx.containers.Canvas" icon="CANVAS_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxControlBars" name="mxControlBar"  label="3.0 ControlBar" className="mx.containers.ControlBar" icon="CONTROL_BAR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxDividedBox" name="mxDividedBox"  label="3.0 DividedBox" className="mx.containers.DividedBox" icon="DIVIDEBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxForm" name="mxForm"  label="3.0 Form" className="mx.containers.Form" icon="FORM_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxFormItem" name="mxFormItem"  label="3.0 FormItem" className="mx.containers.FormItem" icon="FORMITEM_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxFormHeading" name="mxFormHeading"  label="3.0 FormHeading" className="mx.containers.FormHeading" icon="FORMHEADING_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxGrid" name="mxGrid"  label="3.0 Grid" className="mx.containers.Grid" icon="GRID_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxGridItem" name="mxGridItem"  label="3.0 GridItem" className="mx.containers.GridItem" icon="GRIDITEM_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxGridRow" name="mxGridRow"  label="3.0 GridRow" className="mx.containers.GridRow" icon="GRIDROW_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxHBox" name="mxHBox"  label="3.0 HBox" className="mx.containers.HBox" icon="HBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxHDividedBox" name="mxHDividedBox"  label="3.0 HDividedBox" className="mx.containers.HDividedBox" icon="HDIVIDEDBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxPanel" name="mxPanel"  label="3.0 Panel" className="mx.containers.Panel" icon="PANEL_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTabNavigator" name="mxTabNavigator"  label="3.0 TabNavigator" className="mx.containers.TabNavigator" icon="TANBAVIGATOR_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTile" name="mxTile"  label="3.0 Tile" className="mx.containers.Tile" icon="TILE_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxTitleWindow" name="mxTitleWindow"  label="3.0 TitleWindow" className="mx.containers.TitleWindow" icon="TITLEWINDOW_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxVBox" name="mxVBox"  label="3.0 VBox" className="mx.containers.VBox" icon="VBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxVDividedBox" name="mxVDividedBox"  label="3.0 VDividedBox" className="mx.containers.VDividedBox" icon="VDIVIDEDBOX_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+		<componentDefine id="_mxViewStack" name="mxViewStack"  label="3.0 ViewStack" className="mx.containers.ViewStack" icon="VIEWSTACK_ICON_CLASS" namesapce="library://ns.adobe.com/flex/mx"/>
+	</extension>
+	
+	<extension id="_toolbars" point="com.zhrz.eclipse.workbench.plugin.toolbars">
+		<toolBars id="toolBar1" viewId="com.zhrz.fceditor._viewExtension._consoleView">
+			<children>
+				<toolBarButton id="_tlloButton1"
+							label="按钮一" toolTip="" command="com.zhrz.fceditor._fccommands.testCommand1" styleName=""></toolBarButton>
+				<toolBarButton id="_tlloButton2"
+							label="按钮2" toolTip="" command="com.zhrz.fceditor._fccommands.testCommand1" styleName=""></toolBarButton>
+			</children>
+		</toolBars>
+		
+		<toolBars id="toolBar2" viewId="com.zhrz.fceditor._viewExtension._outlineView">
+			<children>
+				<toolBarButton id="_tlloButton1"
+							label="删除组件" toolTip="删除组件" command="com.zhrz.fceditor._fccommands.deleteComponent" styleName="">
+							<expressItems>
+								<item property="enabled" express="=" variable="canDeleteComponent" value="true" defaultValue="false"/>
+							</expressItems>
+				</toolBarButton>
+				<toolBarButton id="_tlloButton2"
+							label="向上移动" toolTip="向上移动组件" command="com.zhrz.fceditor._fccommands.moveUpComponent" styleName="">
+							<expressItems>
+								<item property="enabled" express="=" variable="canMoveUpComponent" value="true" defaultValue="false"/>
+							</expressItems>
+				</toolBarButton>
+				<toolBarButton id="_tlloButton3"
+							label="向下移动" toolTip="向下移动组件" command="com.zhrz.fceditor._fccommands.moveDownComponent" styleName="">
+							<expressItems>
+								<item property="enabled" express="=" variable="canMoveDownComponent" value="true" defaultValue="false"/>
+							</expressItems>
+				</toolBarButton>
+			</children>
+		</toolBars>
+		
+		<toolBars id="toolBar2" viewId="com.zhrz.fceditor._viewExtension._variableView">
+			<children>
+				<toolBarButton id="_tlloButton1"
+							 toolTip="增加类变量" command="com.zhrz.fceditor._fccommands.addClassVariable" styleName="addVariableBtnStyle">
+							<expressItems>
+								<item property="visible" express="=" variable="showAddClassVariable" value="true" defaultValue="true"/>
+<!-- 								<item property="enabled" express="index" variable="enabledAddClassVariable"/> -->
+							</expressItems> 
+				</toolBarButton>
+				
+				<toolBarButton id="_tlloButton1"
+							 toolTip="删除类变量" command="com.zhrz.fceditor._fccommands.deleteClassVariable" styleName="deleteVariableBtnStyle">
+							<expressItems>
+								<item property="visible" express="=" variable="showDeleteClassVariable" value="true" defaultValue="false"/>
+<!-- 								<item property="enabled" express="index" variable="enabledAddClassVariable"/> -->
+							</expressItems> 
+				</toolBarButton>
+			</children>
+		</toolBars>
+	
+	</extension>
+	
+	
+	
+</plugin>
+

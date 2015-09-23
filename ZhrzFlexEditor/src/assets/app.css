@@ -1,0 +1,39 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+global
+{
+	fontSize:14;	
+}
+
+.layoutStyle{
+	paddingLeft:2px;
+	paddingRight:2px;
+	verticalGap:0px;
+}
+
+.horLayoutStyle{
+	horizontalGap:1px;
+}
+
+.menulayoutStyle{
+	verticalGap:0px;	
+}
+
+.workbenchViewTyle{
+	backgroundColor:#f0f0f0;
+	horizontalAlign:center;
+	verticalAlign:middle;
+}
+
+
+.workbenchViewStyle{
+	borderStyle:none;
+	
+}
+
+mx|FormItem{
+	indicatorSkin: Embed(source="Assets.swf",symbol="mx.containers.FormItem.Required");	
+}
+

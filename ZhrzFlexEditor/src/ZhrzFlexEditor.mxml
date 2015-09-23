@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:AirApp xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			xmlns:s="library://ns.adobe.com/flex/spark"  
+			xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:app="com.zhrz.flex.ui.core.app.*"  preinitialize="init(event)"
+			>
+	<fx:Script>
+		<![CDATA[
+			import com.flexspy.FlexSpy;
+			import com.zhrz.flex.ui.core.plugin.PluginXmlVo;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.NumericStepper;
+			import mx.controls.RadioButton;
+			import mx.events.FlexEvent;
+			
+			
+			private var radio:RadioButton;
+			private var  num:NumericStepper;
+			
+			
+			
+			protected function init(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				styleManager.loadStyleDeclarations2("assets/appskin.swf");
+				
+				var pluginVos:ArrayCollection = new ArrayCollection();
+				
+				var baseConfigFile:File = new File(File.applicationDirectory.resolvePath("plugins").nativePath);
+				var pluginFiles:Array = baseConfigFile.getDirectoryListing();
+				for each(var pluginFile:File in pluginFiles){
+					if(pluginFile.isDirectory){
+						for each(var file:File in pluginFile.getDirectoryListing()){
+							if(file.name.indexOf("webplugin") != -1){
+								
+								var fileStram:FileStream = new FileStream();
+								fileStram.open(file,FileMode.READ);
+								
+								var fceditorPlugin:PluginXmlVo = new PluginXmlVo();
+								pluginVos.addItem(fceditorPlugin);
+								fceditorPlugin.pluginId = pluginFile.name;
+								fceditorPlugin.xmlContent = fileStram.readUTFBytes(fileStram.bytesAvailable);
+								fileStram.close();
+							}
+						}
+					}
+				}
+				
+				
+				var projectFile:File = new File(File.applicationDirectory.resolvePath("project.xml").nativePath);
+				var fileStream:FileStream = new FileStream();
+				fileStream.open(projectFile,FileMode.READ);
+				var projectXml:XML = new XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
+				fileStream.close();
+				
+				this.initApp(pluginVos,""+projectXml.proectName,""+projectXml.pluginBaseDir);
+				
+				this.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
+				
+				
+			}
+			
+			public function onKeyDown(event:KeyboardEvent):void{
+				if(event.keyCode == Keyboard.A){
+					FlexSpy.show(this);
+				}
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<!--<fx:Style source="assets/app.css"/>-->
+</app:AirApp>

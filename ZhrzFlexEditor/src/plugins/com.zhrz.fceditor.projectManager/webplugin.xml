@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.zhrz.fceditor.projectManager" name="projectManager" version="1.0" swf="ZhrzFcEditorProjectManagerPlugin.swf">
+
+	<extensionPoint id="projectFileDefine" name="extensionpoint.projectFileDefine"></extensionPoint>
+	
+	
+	<extension id="_viewExtension" point="com.zhrz.eclipse.workbench.plugin.views">
+		<view id="_projectView" className="com.zhrz.fceditor.projectmanager.ProjectTree"
+			label="项目管理器" >
+				<rightMenus>
+					<rightMenu label="打开" data="openEditor" commandId="com.zhrz.fceditor.projectManager._fccommands.openFile"/>
+					<rightMenu label="打开方式" data="selectEditor" commandId="com.zhrz.fceditor.projectManager._fccommands.openFile"/>
+					<rightMenu label="粘贴" data="projectFileCopy" commandId="com.zhrz.fceditor.projectManager._fccommands.copyFiles"/>
+				</rightMenus>
+			</view>
+	</extension>
+	
+	
+	<extension id="_fceditors" point="com.zhrz.eclipse.workbench.plugin.handlers">
+		<Handler id="createNewProjectHandler" className="com.zhrz.fceditor.handlers.CreateNewProjectHandler"
+			commandId="com.zhrz.fceditor.projectManager._fccommands.createNewProject">
+		</Handler>
+		
+		<Handler id="copyFileToProjectHandler" className="com.zhrz.fceditor.handlers.CopyFileToProjectHandler"
+			commandId="com.zhrz.fceditor.projectManager._fccommands.copyFiles">
+		</Handler>
+		<Handler id="openFileHandler" className="com.zhrz.fceditor.handlers.OpenFileByEditorHandler"
+			commandId="com.zhrz.fceditor.projectManager._fccommands.openFile" />
+		
+	</extension>
+	
+	<extension id="_fccommands" point="com.zhrz.eclipse.workbench.plugin.commands">
+		<Command id="createNewProject" 
+			descn="ddd"
+			name="createNewProjectCommand"/>
+		<Command id="copyFiles" 
+			descn="复制"
+			name="copyProjectCommand"/>
+		<Command id="openFile" 
+			descn="打开"
+			name="openFileCommand"/>
+	</extension>
+	
+	<extension id="_pageLayout" point="com.zhrz.eclipse.workbench.plugin.layout">
+		<layout id="defaultLayout" >
+			<VBox width="100%" height="100%" verticalGap="0">
+				<HBox width="100%" height="30%"/>
+				<HBox width="100%" height="70%"/>
+			</VBox>
+		</layout>
+		<layout id="horlayout" >
+			<HBox width="100%" height="100%" horizontalGap="0">
+				<HBox width="70%" height="100%"/>
+				<HBox width="30%" height="100%"/>
+			</HBox>
+		</layout>
+		
+		<layout id="horlayout1" >
+			<VBox width="100%" height="100%" verticalGap="0">
+				<HBox width="100%" height="20%"/>
+				<HBox width="100%" height="80%" horizontalGap="0">
+					<VBox width="300" height="100%"/>
+					<HBox width="100%" height="100%"/>
+				</HBox>
+			</VBox>
+		</layout>
+		
+		<layout id="layout2">
+			<VBox width="100%" height="100%" verticalGap="0">
+				<HBox width="100%" height="30%"/>
+				<HBox width="100%" height="30%"/>
+				<HBox width="100%" height="40%"/>
+			</VBox>
+		</layout>
+		
+		<layout id="layout3">
+			<HBox width="100%" height="100%" horizontalGap="0">
+				<VBox width="50%" height="100%" verticalGap="0">
+					<HBox width="100%" height="50%"/>
+					<HBox width="100%" height="50%"/>
+				</VBox>
+				<HBox width="50%" height="100%" horizontalGap="0">
+					<HBox width="80%" height="100%"/>
+					<HBox width="20%" height="100%"/>
+				</HBox>
+			</HBox>
+		</layout>
+	</extension>
+	
+	<extension id="_projectFileDefine" point="com.zhrz.fceditor.projectManager.projectFileDefine">
+		<projectFileDefine id="_mxmlProjectFile" fileExtension="mxml" className="com.zhrz.fceditor.projectfile.MxmlProjectFileVo" index="0"/>
+		<projectFileDefine id="_xmlProjectFile" fileExtension="xml"  className="com.zhrz.fceditor.projectfile.XmlProjectFileVo" index="0"/>
+		<projectFileDefine id="_as3ProjectFile" fileExtension="as"  className="com.zhrz.fceditor.projectfile.As3ProjectFileVo" index="0"/>
+		<projectFileDefine id="_imageProjectFile" fileExtension="jpg,png"  className="com.zhrz.fceditor.projectfile.ImageProjectFileVo" index="0"/>
+	</extension>
+	
+	<!--  
+	<extension id="_rightMenu" point="com.zhrz.eclipse.workbench.plugin.rightMenus">
+		<rightMenu id="_projectViewRightMenu" viewId="com.zhrz.fceditor.projectManager._viewExtension._projectView" 
+		menuFilterClassName="com.zhrz.fceditor.rightMenu.ProjectTreeRightMenuFilter">
+			<dataprovider>
+				<item label="菜单一" type="radio" enabled="false"/>
+				<item label="菜单二" type="radio" >
+					<item label="菜单2-1" type="checkbox"/>
+					<item label="菜单2-2" type="normal"/>
+				</item>
+				<item  type="separator" />
+				<item label="菜单三" type="radio" />
+				<item label="菜单四" type="radio" />
+			</dataprovider>
+		</rightMenu>
+	</extension>
+	-->
+<!-- 	<extension id="_adapterExtension" point="com.zhrz.eclipse.workbench.plugin.adapterFactory"> -->
+<!-- 		<adapterFactory factoryClass="xxxxxx" adapterType="sssssss" adapterTargetType="xxxxxxx"/> -->
+<!-- 	</extension> -->
+
+</plugin>
+

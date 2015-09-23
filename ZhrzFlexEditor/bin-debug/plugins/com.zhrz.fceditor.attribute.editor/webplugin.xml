@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.zhrz.fceditor.attribute.editor" name="attributeEditor" version="1.0" swf="ZhrzFcEditorPlugin_AttributeEditor.swf">
+
+
+	
+	<extension id="_fceditors" point="com.zhrz.eclipse.workbench.plugin.editors">
+		<editor id="stringEditor" className="com.zhrz.fceditor.attributeeditor.StringEditor"
+			type="property">
+		</editor>
+		<editor id="numberEditor" className="com.zhrz.fceditor.attributeeditor.NumberEditor"
+			type="property">
+		</editor>
+		<editor id="booleanEditor" className="com.zhrz.fceditor.attributeeditor.BooleanEditor"
+			type="property">
+		</editor>
+		
+		<editor id="colorEditor" className="com.zhrz.fceditor.attributeeditor.ColorEditor"
+			type="property">
+		</editor>
+	</extension>
+
+
+	<extension id="_editorsExtenExtension"
+		point="com.zhrz.eclipse.workbench.plugin.editorContentType">
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.stringEditor"
+			contentType="String">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.stringEditor"
+			contentType="Object">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.numberEditor"
+			contentType="uint">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.numberEditor"
+			contentType="Number">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.booleanEditor"
+			contentType="Boolean">
+		</editorExtens>
+		
+		<editorExtens editorId="com.zhrz.fceditor.attribute.editor._fceditors.colorEditor"
+			contentType="Color">
+		</editorExtens>
+	</extension>
+
+<!-- 	<extension id="_componentDefine" point="com.zhrz.fceditor.uicomponentDefine"> -->
+<!-- 		<componentDefine id="_mxButton" name="dddd" label="mx按钮" className="mx.controls.Button" icon="BUTTON_ICON_CLASS"/> -->
+<!-- 		<componentDefine id="_mxCanvas" label="mxCanvas" className="mx.containers.Canvas" icon="CANVAS_ICON_CLASS"/> -->
+<!-- 	</extension> -->
+
+</plugin>
+

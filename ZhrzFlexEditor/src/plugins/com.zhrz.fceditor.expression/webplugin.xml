@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.zhrz.fceditor.expression" name="expression" version="1.0" swf="ZhrzFcEditorExpressionPlugin.swf">
+
+	<extensionPoint id="variableTypeDefine" name="extensionpoint.variableTypeDefine"></extensionPoint>
+	
+	<extension id="_variableTypeDefineExtension" point="com.zhrz.fceditor.expression.variableTypeDefine">
+		<variableTypeDefine id="_intDefine" label="整数类型" name="int" defaultValue="0" editor="org.chenxing.fceditor.expression.editor.IntEditor"/>
+		<variableTypeDefine id="_numberDefine" label="数字类型" name="Number" defaultValue="Number.NaN" editor="org.chenxing.fceditor.expression.editor.NumberEditor"/>
+		<variableTypeDefine id="_unitDefine" label="无符号整数值" name="uint" defaultValue="0" editor="org.chenxing.fceditor.expression.editor.UnitEditor"/>
+		<variableTypeDefine id="_stringDefine" label="字符串" name="String" defaultValue="null"  editor="org.chenxing.fceditor.expression.editor.StringEditor"/>
+		<variableTypeDefine id="_booleanDefine" label="布尔值" name="Boolean" defaultValue="false" editor="org.chenxing.fceditor.expression.editor.BooleanEditor"/>
+		<variableTypeDefine id="_arrayDefine" label="数组" name="Array" defaultValue="null" editor="org.chenxing.fceditor.expression.editor.ArrayEditor"/>
+	</extension>
+	
+	<extension id="_variableBindableDefineExtension" point="com.zhrz.fceditor.variableBindableDefine">
+		<!-- int -->
+		<variableBindableDefine id="_intToInt"  sourceType="int" targetType="int" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToIntegerTranslator"/>
+		<variableBindableDefine id="_intToNumber"  sourceType="int" targetType="Number" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToFloatTranslator"/>
+		<variableBindableDefine id="_intToUint"  sourceType="int" targetType="uint" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToIntegerTranslator"/>
+		<variableBindableDefine id="_intToString"  sourceType="int" targetType="String" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToStringTranslator"/>
+		<variableBindableDefine id="_intToBoolean"  sourceType="int" targetType="Boolean" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToBooleanTranslator"/>
+		
+		<!-- Number -->
+		
+		<variableBindableDefine id="_numberToInt"  sourceType="Number" targetType="int" translateView="org.chenxing.fceditor.expression.translate.VariableNumberToIntegerTranslator"/>
+		<variableBindableDefine id="_numberToNumber"  sourceType="Number" targetType="Number" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToIntegerTranslator"/>
+		<variableBindableDefine id="_numberToUint"  sourceType="Number" targetType="uint" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToUintTranslator"/>
+		<variableBindableDefine id="_numberToString"  sourceType="Number" targetType="String" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToStringTranslator"/>
+		<variableBindableDefine id="_numberToBoolean"  sourceType="Number" targetType="Boolean" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToBooleanTranslator"/>
+	
+		<!-- uint -->
+		
+		<variableBindableDefine id="_uintToInt"  sourceType="uint" targetType="int" translateView="org.chenxing.fceditor.expression.translate.VariableNumberToIntegerTranslator"/>
+		<variableBindableDefine id="_uintToNumber"  sourceType="uint" targetType="Number" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToIntegerTranslator"/>
+		<variableBindableDefine id="_uintToUint"  sourceType="uint" targetType="uint" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToIntegerTranslator"/>
+		<variableBindableDefine id="_uintToString"  sourceType="uint" targetType="String" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToStringTranslator"/>
+		<variableBindableDefine id="_uintToBoolean"  sourceType="uint" targetType="Boolean" translateView="org.chenxing.fceditor.expression.translate.VariableIntegerToBooleanTranslator"/>
+	
+	
+		<!-- String  -->
+		<variableBindableDefine id="_stringToInt"  sourceType="String" targetType="int" translateView="org.chenxing.fceditor.expression.translate.VariableStringToIntegerTranslator"/>
+		<variableBindableDefine id="_stringToNumber"  sourceType="String" targetType="Number" translateView="org.chenxing.fceditor.expression.translate.VariableStringToFloatTranslator"/>
+		<variableBindableDefine id="_stringToInt"  sourceType="String" targetType="uint" translateView="org.chenxing.fceditor.expression.translate.VariableStringToIntegerTranslator"/>
+		<variableBindableDefine id="_stringToString"  sourceType="String" targetType="String" translateView="org.chenxing.fceditor.expression.translate.VariableStringToStringTranslator"/>
+		<variableBindableDefine id="_stringToBoolean"  sourceType="String" targetType="Boolean" translateView="org.chenxing.fceditor.expression.translate.VariableStringToBooleanTranslator"/>
+		<variableBindableDefine id="_stringToArray"  sourceType="String" targetType="Array" translateView="org.chenxing.fceditor.expression.translate.VariableStringToArrayTranslator"/>
+	 
+		<variableBindableDefine id="_booleanToBoolean"  sourceType="Boolean" targetType="String" translateView="org.chenxing.fceditor.expression.translate.VariableBooleanToStringTranslator"/>
+		<variableBindableDefine id="_booleanToBoolean"  sourceType="Boolean" targetType="Boolean" translateView="org.chenxing.fceditor.expression.translate.VariableBooleanToStringTranslator"/>
+	</extension>
+	
+</plugin>
+
